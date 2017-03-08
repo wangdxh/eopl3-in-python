@@ -56,7 +56,7 @@ def diff(exp, env):
 def iszero(exp, env):
     name, param = exp
     print name
-    return bool(value_of(param, env))
+    return not(bool(value_of(param, env)))
 
 @symboletofun('if')
 def if_fun(exp, env):
@@ -114,7 +114,7 @@ inputstr = '''
                             let d = proc (x) proc (z) ((f (x x)) z)
                             in proc (n) ((f (d d)) n)
                 in let
-                    t4m = proc (f) proc(x) if zero?(x) then -((f -(x,1)), -4) else 0 
+                    t4m = proc (f) proc(x) if zero?(x) then 0 else -((f -(x,1)),-4)
                     in let times4 = (fix t4m)
                         in (times4 7)
                 
